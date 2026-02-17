@@ -191,7 +191,7 @@ function mostrarFinal(){
 }
 
 /* Botón moviéndose lento */
-const errbtn=document.getElementById("btnSii");
+const btnSii=document.getElementById("btnSii");
 let x=100,y=100;
 let dx=0.1,dy=0.1;
 
@@ -200,8 +200,8 @@ function mover(){
     const alto=window.innerHeight-btnSii.offsetHeight;
     x+=dx;
     y+=dy;
-    if(x<=0||x>=ancho)dx*=-1;
-    if(y<=0||y>=alto)dy*=-1;
+    if(x<=0||x>=ancho)dx*=-4;
+    if(y<=0||y>=alto)dy*=-3;
     btnSii.style.left=x+"px";
     btnSii.style.top=y+"px";
     requestAnimationFrame(mover);
