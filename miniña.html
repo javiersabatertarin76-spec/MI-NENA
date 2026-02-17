@@ -151,7 +151,6 @@ button:hover{
     <h2 class="animar-izquierda">¿ME QUIERES AUNQUE SEA UN POQUITO?</h2>
     <div class="animar-abajo">
         <button id="btnSii">SII</button>
-        <button onclick="errorSii()">SII</button>
         <button onclick="mostrarCarta()">MAS DE LO QUE CREES</button>
     </div>
 </div>
@@ -195,7 +194,11 @@ function mostrarFinal(){
 const btnSii=document.getElementById("btnSii");
 let x=100,y=100;
 let dx=0.1,dy=0.1;
-
+    
+function btnSii() {
+    alert("❌ ERROR 404: Respuesta incorrecta 😝💘");
+}
+    
 function mover(){
     const ancho=window.innerWidth-btnSii.offsetWidth;
     const alto=window.innerHeight-btnSii.offsetHeight;
