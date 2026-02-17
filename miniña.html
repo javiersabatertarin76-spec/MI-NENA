@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi niña 💕</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ffb6d9,#ffcce6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* Animación de entrada */
+@keyframes entrarArriba{
+    from{
+        opacity:0;
+        transform:translateY(-60px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes entrarAbajo{
+    from{
+        opacity:0;
+        transform:translateY(60px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes entrarIzquierda{
+    from{
+        opacity:0;
+        transform:translateX(-80px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+.seccion{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+}
+
+.activa{
+    display:flex;
+}
+
+.animar-arriba{
+    animation:entrarArriba 1s ease forwards;
+}
+
+.animar-abajo{
+    animation:entrarAbajo 1s ease forwards;
+}
+
+.animar-izquierda{
+    animation:entrarIzquierda 1s ease forwards;
+}
+
+h1{
+    color:#d63384;
+    margin-bottom:10px;
+}
+
+button{
+    background-color:#ff66b2;
+    border:none;
+    padding:15px 25px;
+    margin:15px;
+    font-size:18px;
+    border-radius:25px;
+    cursor:pointer;
+    color:white;
+}
+
+button:hover{
+    background-color:#ff1493;
+}
+
+.carta{
+    font-size:100px;
+    cursor:pointer;
+    animation:entrarAbajo 1s ease forwards;
+}
+
+.corona{
+    font-size:100px;
+    margin-top:20px;
+    animation:entrarArriba 1.5s ease forwards;
+}
+
+/* Corazones */
+.corazones{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    pointer-events:none;
+}
+
+.corazones span{
+    position:absolute;
+    bottom:-50px;
+    animation:subir 8s linear infinite;
+}
+
+@keyframes subir{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-110vh);opacity:0;}
+}
+
+#btnSii{
+    position:fixed;
+}
+
+.imagen-final{
+    width:250px;
+    margin-top:20px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    animation:entrarAbajo 1.5s ease forwards; 
+    }
+</style>
+</head>
+
+<body>
+
+<div class="corazones" id="corazones"></div>
+
+<!-- PANTALLA 1 -->
+<div id="pantalla1" class="seccion activa">
+    <h1 class="animar-arriba">BUENOS DIAS MI NIÑA PEQUEÑAA 💕</h1>
+    <h2>💖💖💖💖</h2>
+    <h2 class="animar-izquierda">¿ME QUIERES AUNQUE SEA UN POQUITO?</h2>
+    <div class="animar-abajo">
+        <button id="btnSii">SII</button>
+        <button onclick="mostrarCarta()">MAS DE LO QUE CREES</button>
+    </div>
+</div>
+
+<!-- PANTALLA 2 -->
+<div id="pantalla2" class="seccion">
+    <h1>ABRELA MI PITUFA</h1>
+    <div class="carta" onclick="abrirMensaje()">💌</div>
+    <div id="mensaje" style="display:none;" class="animar-arriba">
+        <p>YO TAMBIEN TE QUIERO UN POQUITO MASSS 💖</p>
+        <button onclick="mostrarFinal()">¿PERO ENTONCES TAMBIEN ME QUIERES DAR UN BESITO?</button>
+    </div>
+</div>
+
+<!-- PANTALLA 3 -->
+<div id="pantalla3" class="seccion">
+    <h1 class="animar-arriba">QUE TENGAS BUEN DIA HOY EN EL TRABAJO PRINCESA</h1>
+    <div class="corona">👑</div>
+
+    <img src="foto1.webp" class="imagen-final">
+</div>
+
+<script>
+
+/* Cambiar pantallas */
+function mostrarCarta(){
+    document.getElementById("pantalla1").classList.remove("activa");
+    document.getElementById("pantalla2").classList.add("activa");
+}
+
+function abrirMensaje(){
+    document.getElementById("mensaje").style.display="block";
+}
+
+function mostrarFinal(){
+    document.getElementById("pantalla2").classList.remove("activa");
+    document.getElementById("pantalla3").classList.add("activa");
+}
+
+/* Botón moviéndose lento */
+const btnSii=document.getElementById("btnSii");
+let x=200,y=200;
+let dx=0.05,dy=0.05;
+
+function mover(){
+    const ancho=window.innerWidth-btnSii.offsetWidth;
+    const alto=window.innerHeight-btnSii.offsetHeight;
+    x+=dx;
+    y+=dy;
+    if(x<=0||x>=ancho)dx*=-1;
+    if(y<=0||y>=alto)dy*=-1;
+    btnSii.style.left=x+"px";
+    btnSii.style.top=y+"px";
+    requestAnimationFrame(mover);
+}
+mover();
+
+/* Corazones */
+function crearCorazon(){
+    const contenedor=document.getElementById("corazones");
+    const corazon=document.createElement("span");
+    corazon.innerHTML="💗";
+    corazon.style.left=Math.random()*100+"vw";
+    corazon.style.fontSize=(Math.random()*20+15)+"px";
+    contenedor.appendChild(corazon);
+    setTimeout(()=>{corazon.remove();},8000);
+}
+setInterval(crearCorazon,300);
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
