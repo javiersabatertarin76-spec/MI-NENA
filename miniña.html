@@ -47,7 +47,7 @@ body{
     }
     to{
         opacity:1;
-        transform:translateX(0);
+        transforM:translateX(0);
     }
 }
 
@@ -193,7 +193,7 @@ function mostrarFinal(){
 /* Botón moviéndose lento */
 const btnSii=document.getElementById("btnSii");
 let x=200,y=200;
-let dx=0.05,dy=0.05;
+let dx=0.01,dy=0.01;
 
 function mover(){
     const ancho=window.innerWidth-btnSii.offsetWidth;
